@@ -4,9 +4,16 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
+var cors = require('cors')
+
+app.use(cors())
+
 const noteController = require("./controller/noteController");
 
 const mongoose = require("mongoose");
+
+
+
 
 mongoose
   .connect(process.env.dbUrl)
