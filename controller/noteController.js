@@ -43,7 +43,10 @@ router.delete("/", async (req, res) => {
 
 router.put("/", async (req, res) => {
   await todoNote
-    .findByIdAndUpdate(req.body.id, { note: req.body.note })
+    .findByIdAndUpdate(req.body.id, {
+      note: req.body.note,
+      isChecked: req.body.isChecked,
+    })
     .then(
       res.send({
         status: 200,
