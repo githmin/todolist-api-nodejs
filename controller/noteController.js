@@ -23,4 +23,22 @@ router.post("/", async (req, res) => {
     });
 });
 
+router.delete("/", async (req, res) => {
+  await todoNote
+    .findByIdAndDelete(req.body.id)
+    .then(
+      res.send({
+        status: 200,
+        params: "Delete Successfull",
+      })
+    )
+    .catch((e) => {
+      res.send({
+        status: 400,
+        params: "Save Unsuccesfull",
+      });
+      console.log(e);
+    });
+});
+
 module.exports = router;
