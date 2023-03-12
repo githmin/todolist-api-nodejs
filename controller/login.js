@@ -1,18 +1,27 @@
 const jwt = require("jsonwebtoken");
 const express = require("express");
 
+const user = require("../model/user");
 const router = express.Router();
 
-// Hardcoded until db fetch implimentation
-const getUser = async (username) => {
-  return { userId: 123, password: "hai", username };
-};
+router.post("/register", async (req, res) => {
+  const newUser = new user({
+    email: req.body.email,
+    password: req.body.password,
+  });
+
+  try {
+    await newUser.save();
+    res.sendStatus(200);
+  } catch (e) {
+    res.send({ status: 400, error: e });
+  }
+});
 
 router.post("/", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await getUser(username);
-  console.log(username, password, user);
-  if (user.password !== password) {
+  const { email, password } = req.body;
+  const userObj = await user.findOne({ email: email });
+  if (userObj.password !== password) {
     return res.status(403).json({
       error: "Invalid Login",
     });
@@ -20,8 +29,9 @@ router.post("/", async (req, res) => {
 
   delete user.password;
 
-  const token = jwt.sign(user, process.env.secret, { expiresIn: "1h" });
-  console.log("passed");
+  const token = await jwt.sign({ userObj }, process.env.secret, {
+    expiresIn: "1h",
+  });
   res.cookie("token", token);
   res.send("Authorized");
 });

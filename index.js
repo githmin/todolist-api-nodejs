@@ -6,15 +6,19 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 var cors = require("cors");
+const login = require("./controller/login");
+const mongoose = require("mongoose");
+const { jwtAuthCookie } = require("./middleware/jwtAuthCookie");
 
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 app.use(cors());
 app.use(cookieParser());
 
 const noteController = require("./controller/noteController");
-
-const mongoose = require("mongoose");
-const login = require("./controller/login");
-const { jwtAuthCookie } = require("./middleware/jwtAuthCookie");
 
 mongoose
   .connect(process.env.dbUrl)
