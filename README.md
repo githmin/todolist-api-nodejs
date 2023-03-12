@@ -83,6 +83,8 @@ Login ==> (Post request) ==> /api/v1/login
 
 To add | delete | update | delete, make relevent requests to this path ==> /api/v1/
 
+### JsonWebToken is used for authentication
+
 ## Roadmap
 
 See the [open issues](https://github.com/githmin/todolist-api-nodejs/issues) for a list of proposed features (and known issues).
