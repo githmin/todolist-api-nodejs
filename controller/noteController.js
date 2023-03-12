@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const todoNote = require("../model/todoNote");
 
+// New note
 router.post("/", async (req, res) => {
   const newNote = new todoNote({
     note: req.body.note,
@@ -23,6 +24,7 @@ router.post("/", async (req, res) => {
     });
 });
 
+// Delete note
 router.delete("/", async (req, res) => {
   await todoNote
     .findByIdAndDelete(req.body.id)
@@ -41,6 +43,7 @@ router.delete("/", async (req, res) => {
     });
 });
 
+// Update note
 router.put("/", async (req, res) => {
   await todoNote
     .findByIdAndUpdate(req.body.id, {
@@ -62,6 +65,7 @@ router.put("/", async (req, res) => {
     });
 });
 
+// Get all notes
 router.get("/", async (req, res) => {
   const list = await todoNote.find({});
   res.send(list);
