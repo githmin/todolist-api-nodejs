@@ -2,7 +2,7 @@
 <p align="center">
   <h3 align="center">To do list API using nodejs</h3>
    <p align="center">
-    A complete REST API for your to-do app including login | register and crud operations written using nodejs
+    A complete REST API for your to-do app including login, register and crud operations written using nodejs
     <br/>
     <br/>
 </p>
@@ -59,7 +59,7 @@ git clone https://github.com/githmin/todolist-api-nodejs.git
 
 2. cd into the directory
 ```sh
-cd todolist-api-nodejs.git
+cd todolist-api-nodejs
 ```
 
 3.  run below command to install dependencies
